@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CarpimTablosuOyunu:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CarpimTablosuOyunu_jar</output-path>
+    <root id="archive" name="CarpimTablosuOyunu.jar">
+      <element id="module-output" name="CarpimTablosuOyunu" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Oyun.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Oyun.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Random</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Oyun </span><span class="s0">extends </span><span class="s1">JFrame </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">JPanel mainPanel</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField Cevap</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JLabel Soru</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JButton OnayTusu</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JLabel Sonuc</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JLabel Skor</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JLabel ad</span><span class="s2">;</span>
+
+    <span class="s0">private int </span><span class="s1">correctAnswer</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">score</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Oyun</span><span class="s2">() {</span>
+        <span class="s1">score </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+        <span class="s1">generateQuestion</span><span class="s2">();</span>
+
+        <span class="s1">OnayTusu</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s1">checkAnswer</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">generateQuestion</span><span class="s2">() {</span>
+        <span class="s1">Random rand </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Random</span><span class="s2">();</span>
+        <span class="s0">int </span><span class="s1">num1 </span><span class="s2">= </span><span class="s1">rand</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s3">10</span><span class="s2">) + </span><span class="s3">1</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">num2 </span><span class="s2">= </span><span class="s1">rand</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s3">10</span><span class="s2">) + </span><span class="s3">1</span><span class="s2">;</span>
+        <span class="s1">correctAnswer </span><span class="s2">= </span><span class="s1">num1 </span><span class="s2">* </span><span class="s1">num2</span><span class="s2">;</span>
+        <span class="s1">Soru</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">num1 </span><span class="s2">+ </span><span class="s4">&quot; x &quot; </span><span class="s2">+ </span><span class="s1">num2 </span><span class="s2">+ </span><span class="s4">&quot; = ?&quot;</span><span class="s2">);</span>
+        <span class="s1">Cevap</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s4">&quot;&quot;</span><span class="s2">);</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">checkAnswer</span><span class="s2">() {</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s0">int </span><span class="s1">userAnswer </span><span class="s2">= </span><span class="s1">Integer</span><span class="s2">.</span><span class="s1">parseInt</span><span class="s2">(</span><span class="s1">Cevap</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">());</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">userAnswer </span><span class="s2">== </span><span class="s1">correctAnswer</span><span class="s2">) {</span>
+                <span class="s1">score</span><span class="s2">++;</span>
+
+            <span class="s2">}</span>
+            <span class="s1">Skor</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s4">&quot;Skor: &quot; </span><span class="s2">+ </span><span class="s1">score</span><span class="s2">);</span>
+            <span class="s1">generateQuestion</span><span class="s2">();</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">NumberFormatException e</span><span class="s2">) {</span>
+            <span class="s1">Sonuc</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s4">&quot;Geçersiz giriş! Lütfen bir sayı girin.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Oyun</span><span class="s2">();</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setContentPane</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Oyun</span><span class="s2">().</span><span class="s1">mainPanel</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">pack</span><span class="s2">();</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>
